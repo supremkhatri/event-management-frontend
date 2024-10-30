@@ -94,7 +94,7 @@ const Signup: React.FC = () => {
                   <option value="Computer Engineering">Computer Engineering</option>
                   <option value="Electrical Engineering">Electrical Engineering</option>
                   <option value="Mechanical Engineering">Mechanical Engineering</option>
-                  <option value="Architecture">Architecture</option>
+                  <option value="Architecture">Architecture Engineering</option>
                   <option value="Other">Other</option>
                 </Field>
                 <ErrorMessage name="faculty" component="div" className="text-red-500 text-sm" />
