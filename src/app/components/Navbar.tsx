@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import path from "path";
 
 const Navbar = () => {
@@ -9,7 +9,14 @@ const Navbar = () => {
   // code to authenticate user
   let logedIn = true;
 
+  let router = useRouter();
+
   const pathname = usePathname();
+
+  const navigateHandler = (routerName: string): void => {
+    router.push(routerName);
+  };
+
 
   const isLandingPage = pathname === "/";
 
@@ -23,19 +30,20 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between">
         {/* Logo */}
-        <div className=" ml-4 text-xl font-bold">EM</div>
+        <div className=" ml-4 text-xl font-bold" onClick={()=> navigateHandler("/")}>EM</div>
 
         {/* Search Bar (Visible in all views, adjusted for large screens) */}
         <div className="flex items-center flex-grow mx-4 lg:max-w-md">
-          <input
-            type="text"
-            placeholder="Search Events"
-            className="p-2 rounded-full backdrop-blur bg-neutral-500/10 text-sm text-white w-full border-none outline-none"
-            style={{ padding: "10px" }}
-          />
-          <button className="mx-4 p-3 bg-neutral-500/10 rounded-xl text-sm hover:bg-gray-700">
-            Search
-          </button>
+        <input
+  type="text"
+  placeholder="Search Events"
+  className="p-2 rounded-full border border-white text-sm text-white w-full outline-none bg-neutral-500/10 border-transparent focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition duration-300"
+  style={{ padding: "10px" }}
+/>
+<button className="mx-4 border border-white p-3 bg-transparent rounded-xl text-sm text-white hover:bg-gray-700 hover:border-transparent focus:ring-2 focus:ring-yellow-500 transition duration-300">
+  Search
+</button>
+
         </div>
 
         {/* Links and Buttons (Hidden on mobile) */}
@@ -49,6 +57,18 @@ const Navbar = () => {
           <Link href="#" className="hover:text-gray-300">
             Contact
           </Link>
+          <button
+            onClick={() => navigateHandler("/signup")}
+            className="bg-white text-black border border-black px-4 py-2 rounded-md transition-transform transform hover:bg-black hover:text-white hover:border-white hover:scale-105"
+          >
+            Signup
+          </button>
+          <button
+            onClick={() => navigateHandler("/login")}
+            className="bg-transparent text-white border border-white px-4 py-2 rounded-md transition-transform transform hover:bg-white hover:text-black hover:scale-105"
+          >
+            Login
+          </button>
           {logedIn ? (
             <>
               <div className="dropdown dropdown-end">
