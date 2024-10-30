@@ -17,6 +17,7 @@ const Navbar = () => {
     router.push(routerName);
   };
 
+
   const isLandingPage = pathname === "/";
 
   const Navbarclass = isLandingPage
@@ -29,7 +30,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between">
         {/* Logo */}
-        <div className=" ml-4 text-xl font-bold">EM</div>
+        <div className=" ml-4 text-xl font-bold" onClick={()=> navigateHandler("/")}>EM</div>
 
         {/* Search Bar (Visible in all views, adjusted for large screens) */}
         <div className="flex items-center flex-grow mx-4 lg:max-w-md">
