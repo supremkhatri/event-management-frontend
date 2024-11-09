@@ -3,12 +3,9 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import path from "path";
-
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // code to authenticate user
-  let logedIn = true;
-
+  let logedIn = true; // Code to authenticate user
   let router = useRouter();
 
   const pathname = usePathname();
@@ -17,11 +14,10 @@ const Navbar = () => {
     router.push(routerName);
   };
 
-
   const isLandingPage = pathname === "/";
 
   const Navbarclass = isLandingPage
-    ? "backdrop-blur-lg mt-2  bg-transparent fixed top-0 w-full z-50"
+    ? "backdrop-blur-lg mt-2 bg-transparent fixed top-0 w-full z-50"
     : "bg-black top-0 w-full z-50";
 
   return (
@@ -30,25 +26,29 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between">
         {/* Logo */}
-        <div className=" ml-4 text-xl font-bold" onClick={()=> navigateHandler("/")}>EM</div>
+        <div
+          className="ml-4 text-xl font-bold cursor-pointer"
+          onClick={() => navigateHandler("/")}
+        >
+          EM
+        </div>
 
         {/* Search Bar (Visible in all views, adjusted for large screens) */}
         <div className="flex items-center flex-grow mx-4 lg:max-w-md">
-        <input
-  type="text"
-  placeholder="Search Events"
-  className="p-2 rounded-full border border-white text-sm text-white w-full outline-none bg-neutral-500/10 border-transparent focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition duration-300"
-  style={{ padding: "10px" }}
-/>
-<button className="mx-4 border border-white p-3 bg-transparent rounded-xl text-sm text-white hover:bg-gray-700 hover:border-transparent focus:ring-2 focus:ring-yellow-500 transition duration-300">
-  Search
-</button>
-
+          <input
+            type="text"
+            placeholder="Search Events"
+            className="p-2 rounded-full border border-white text-sm text-white w-full outline-none bg-neutral-500/10 border-transparent focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition duration-300"
+            style={{ padding: "10px" }}
+          />
+          <button className="mx-4 border border-white p-3 bg-transparent rounded-xl text-sm text-white hover:bg-gray-700 hover:border-transparent focus:ring-2 focus:ring-yellow-500 transition duration-300">
+            Search
+          </button>
         </div>
 
         {/* Links and Buttons (Hidden on mobile) */}
         <div className="hidden md:flex items-center space-x-7 mr-6">
-          <Link href="events" className="hover:text-gray-300">
+          <Link href="/events" className="hover:text-gray-300">
             Events
           </Link>
           <Link href="#" className="hover:text-gray-300">
@@ -69,6 +69,7 @@ const Navbar = () => {
           >
             Login
           </button>
+
           {logedIn ? (
             <>
               <div className="dropdown dropdown-end">
@@ -80,7 +81,7 @@ const Navbar = () => {
                   <div className="w-10 rounded-full">
                     <img
                       alt="Tailwind CSS Navbar component"
-                      src="	https://avatars.githubusercontent.com/u/128308240?v=4"
+                      src="https://avatars.githubusercontent.com/u/128308240?v=4"
                     />
                   </div>
                 </div>
@@ -102,7 +103,7 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <button className="bg-blue-900  text-sm px-4 py-2 rounded-full hover:bg-blue-800">
+              <button className="bg-blue-900 text-sm px-4 py-2 rounded-full hover:bg-blue-800">
                 Log In
               </button>
               <button className="bg-green-900 text-sm px-4 py-2 rounded-full hover:bg-green-800">
@@ -133,40 +134,6 @@ const Navbar = () => {
               />
             </svg>
           </button>
-          {logedIn ? (
-            <>
-              <div className="dropdown dropdown-end">
-                <div
-                  tabIndex={0}
-                  role="button"
-                  className="btn btn-ghost btn-circle avatar"
-                >
-                  <div className="w-8 mx-2 rounded-full">
-                    <img
-                      alt="Tailwind CSS Navbar component"
-                      src="	https://avatars.githubusercontent.com/u/128308240?v=4"
-                    />
-                  </div>
-                </div>
-                <ul
-                  tabIndex={0}
-                  className="menu menu-sm dropdown-content border border-emerald-900 bg-black rounded-box z-[1] mt-3 w-52 p-2 shadow"
-                >
-                  <li>
-                    <a className="justify-between">Profile</a>
-                  </li>
-                  <li>
-                    <a>Settings</a>
-                  </li>
-                  <li>
-                    <a>Logout</a>
-                  </li>
-                </ul>
-              </div>
-            </>
-          ) : (
-            <></>
-          )}
         </div>
       </div>
 
@@ -174,24 +141,24 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden mt-4">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a
-              href="events"
+            <Link
+              href="/events"
               className="block text-white px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
             >
               Events
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="block text-white px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
             >
               Class
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="block text-white px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
             >
               Contact
-            </a>
+            </Link>
           </div>
 
           {logedIn ? (

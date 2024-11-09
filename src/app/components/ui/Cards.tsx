@@ -1,8 +1,13 @@
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+
 export default function Card({
+  id,
   title,
   description,
   image,
 }: {
+  id: string;
   title: string;
   description: string;
   image: string;
@@ -16,7 +21,10 @@ export default function Card({
         <h2 className="card-title">{title}</h2>
         <p>{description}</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-info">View More</button>
+        <Link href={`/events/${encodeURIComponent(title)}`}>
+  <button className="btn btn-info">View More</button>
+</Link>
+
         </div>
       </div>
     </div>
