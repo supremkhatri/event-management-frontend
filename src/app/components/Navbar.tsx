@@ -54,7 +54,7 @@ const Navbar = () => {
           <Link href="#" className="hover:text-gray-300">
             Class
           </Link>
-          <Link href="#" className="hover:text-gray-300">
+          <Link href="contact" className="hover:text-gray-300">
             Contact
           </Link>
           <button
