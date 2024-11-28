@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import path from "path";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
