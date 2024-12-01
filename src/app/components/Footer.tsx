@@ -8,6 +8,7 @@ import {
   IconBrandLinkedin,
 } from "@tabler/icons-react";
 
+
 const Footer = () => {
   return (
     <footer className="bg-gray-800/10 text-white py-8 px-10">
@@ -72,6 +73,27 @@ const Footer = () => {
             </a>
           </div>
         </div>
+      </div>
+
+      {/* Subscription Section */}
+      <div className="mt-12 text-center">
+        <h3 className="font-bold text-2xl md:text-3xl mb-4 text-white">Stay Updated</h3>
+        <p className="text-gray-400 mb-6 text-lg md:text-xl">
+          Subscribe to our newsletter for the latest updates.
+        </p>
+        <form className="flex justify-center items-center gap-4 md:gap-6 w-full max-w-md mx-auto">
+          <input
+            type="email"
+            className="p-3 rounded-full border border-transparent text-sm text-white w-full outline-none bg-neutral-800/40 focus:bg-neutral-700 focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all duration-300"
+            placeholder="Enter your email"
+          />
+          <button
+            type="submit"
+            className="p-3 rounded-full border text-sm text-white w-full sm:w-auto bg-primary-500 focus:outline-2 focus:outline-yellow-500 hover:bg-primary-600 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all duration-300"
+          >
+            Subscribe
+          </button>
+        </form>
       </div>
 
       {/* Footer Bottom */}
