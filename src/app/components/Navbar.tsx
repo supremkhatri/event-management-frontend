@@ -2,29 +2,40 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import path from "path";
+import { EVENTS } from "@/lib/event_data";
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  let logedIn = true; // Code to authenticate user
-  let router = useRouter();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showResults, setShowResults] = useState(false);
 
+  const router = useRouter();
   const pathname = usePathname();
 
-  const navigateHandler = (routerName: string): void => {
+  const navigateHandler = (routerName : string) => {
     router.push(routerName);
   };
 
   const isLandingPage = pathname === "/";
-
   const Navbarclass = isLandingPage
     ? "backdrop-blur-lg mt-2 bg-transparent fixed top-0 w-full z-50"
     : "bg-black top-0 w-full z-50";
+
+  const filteredResults = EVENTS.filter(
+    (event) =>
+      event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      event.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      event.tags.some((tag) =>
+        tag.toLowerCase().includes(searchQuery.toLowerCase())
+      ) ||
+      event.status.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <nav
       className={`rounded-3xl w-full top-0 z-50 text-white p-2 border border-emerald-100/10 ${Navbarclass}`}
     >
-      <div className="container mx-auto flex items-center justify-between">
+      <div className="container mx-auto flex items-center justify-between relative">
         {/* Logo */}
         <div
           className="ml-4 text-xl font-bold cursor-pointer"
@@ -33,20 +44,53 @@ const Navbar = () => {
           EM
         </div>
 
-        {/* Search Bar (Visible in all views, adjusted for large screens) */}
-        <div className="flex items-center flex-grow mx-4 lg:max-w-md">
+        {/* Search Bar */}
+        <div className="flex items-center flex-grow mx-4 lg:max-w-md relative">
           <input
             type="text"
             placeholder="Search Events"
             className="p-2 rounded-full border border-white text-sm text-white w-full outline-none bg-neutral-500/10 border-transparent focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition duration-300"
-            style={{ padding: "10px" }}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onFocus={() => setShowResults(true)}
+            onBlur={() => setTimeout(() => setShowResults(false), 200)}
           />
-          <button className="mx-4 border border-white p-3 bg-transparent rounded-xl text-sm text-white hover:bg-gray-700 hover:border-transparent focus:ring-2 focus:ring-yellow-500 transition duration-300">
-            Search
-          </button>
+          {showResults && searchQuery && (
+            <div className="absolute top-12 left-0 w-full bg-black text-white p-4 rounded-lg shadow-lg z-50">
+              {filteredResults.length > 0 ? (
+                filteredResults.map((event, index) => (
+                  <Link
+                    key={index}
+                    href={`/events/${event.status}/${event.title.replace(/\s+/g, '-')}`}
+                    className="flex items-start mb-4 hover:bg-neutral-700 p-2 rounded"
+                  >
+                    <img
+                      src={event.image}
+                      alt={event.title}
+                      className="w-12 h-12 rounded mr-3"
+                    />
+                    <div>
+                      <h4 className="font-bold">{event.title}</h4>
+                      <p className="text-sm text-gray-400">
+                        {event.description}
+                      </p>
+                      <div className="text-xs text-gray-500 mt-1">
+                        Tags: {event.tags.join(", ")}
+                      </div>
+                      <div className="text-xs text-green-500 mt-1">
+                        Status: {event.status}
+                      </div>
+                    </div>
+                  </Link>
+                ))
+              ) : (
+                <p className="text-sm text-gray-400">No results found.</p>
+              )}
+            </div>
+          )}
         </div>
 
-        {/* Links and Buttons (Hidden on mobile) */}
+        {/* Links and Buttons */}
         <div className="hidden md:flex items-center space-x-7 mr-6">
           <Link href="/events" className="hover:text-gray-300">
             Events
@@ -69,114 +113,8 @@ const Navbar = () => {
           >
             Login
           </button>
-
-          {logedIn ? (
-            <>
-              <div className="dropdown dropdown-end">
-                <div
-                  tabIndex={0}
-                  role="button"
-                  className="btn btn-ghost btn-circle avatar"
-                >
-                  <div className="w-10 rounded-full">
-                    <img
-                      alt="Tailwind CSS Navbar component"
-                      src="https://avatars.githubusercontent.com/u/128308240?v=4"
-                    />
-                  </div>
-                </div>
-                <ul
-                  tabIndex={0}
-                  className="menu menu-sm dropdown-content border border-emerald-900 bg-black rounded-box z-[1] mt-3 w-52 p-2 shadow"
-                >
-                  <li>
-                    <a className="justify-between">Profile</a>
-                  </li>
-                  <li>
-                    <a>Settings</a>
-                  </li>
-                  <li>
-                    <a>Logout</a>
-                  </li>
-                </ul>
-              </div>
-            </>
-          ) : (
-            <>
-              <button className="bg-blue-900 text-sm px-4 py-2 rounded-full hover:bg-blue-800">
-                Log In
-              </button>
-              <button className="bg-green-900 text-sm px-4 py-2 rounded-full hover:bg-green-800">
-                Sign Up
-              </button>
-            </>
-          )}
-        </div>
-
-        {/* Mobile Menu Button */}
-        <div className="md:hidden">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="text-white focus:outline-none"
-          >
-            <svg
-              className="w-6 h-6 mr-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"}
-              />
-            </svg>
-          </button>
         </div>
       </div>
-
-      {/* Mobile Dropdown Menu */}
-      {isOpen && (
-        <div className="md:hidden mt-4">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <Link
-              href="/events"
-              className="block text-white px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
-            >
-              Events
-            </Link>
-            <Link
-              href="#"
-              className="block text-white px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
-            >
-              Class
-            </Link>
-            <Link
-              href="#"
-              className="block text-white px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
-            >
-              Contact
-            </Link>
-          </div>
-
-          {logedIn ? (
-            <></>
-          ) : (
-            <>
-              <div className="px-5 pt-4 pb-3 flex justify-between space-x-4">
-                <button className="w-full rounded-full bg-blue-900 px-4 py-2 hover:bg-blue-800">
-                  Log In
-                </button>
-                <button className="w-full bg-green-900 px-4 py-2 rounded-full hover:bg-green-800">
-                  Sign Up
-                </button>
-              </div>
-            </>
-          )}
-        </div>
-      )}
     </nav>
   );
 };

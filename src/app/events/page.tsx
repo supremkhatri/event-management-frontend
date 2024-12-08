@@ -1,60 +1,45 @@
-// src/app/events/page.tsx
-import Card from '@/app/components/ui/Cards';
+import { EVENTS } from '@/lib/event_data';
+import OngoingCard from '@/app/events/ongoing/Cards';
+import PastCard from '@/app/events/past/Cards';
 
 export default function Events() {
-  const cards = [
-    {
-      id: '1',
-      title: "My First Commit",
-      description: "HTML, CSS, and Javascript classes to get you started with web development",
-      image: "/images/image_2.jpg"
-    },
-    {
-      id: '2',
-      title: "My Second Commit",
-      description: "HTML, CSS classes to get you started with web development",
-      image: "/images/image_2.jpg"
-    },
-    {
-      id: '3',
-      title: "My Third Commit",
-      description: "HTML, CSS classes to get you started with web development",
-      image: "/images/image_2.jpg"
-    },
-    {
-      id: '4',
-      title: "My Fourth Commit",
-      description: "HTML, CSS classes to get you started with web development",
-      image: "/images/image_2.jpg"
-    },
-    {
-      id: '5',
-      title: "My Fifth Commit",
-      description: "HTML, CSS classes to get you started with web development",
-      image: "/images/image_2.jpg"
-    },
-    {
-      id: '6',
-      title: "My Sixth Commit",
-      description: "HTML, CSS classes to get you started with web development",
-      image: "/images/image_2.jpg"
-    },
-  ];
+  const ongoingEvents = EVENTS.filter((event) => event.status === 'ongoing');
+  const pastEvents = EVENTS.filter((event) => event.status === 'past');
 
   return (
-    <>
-      <div className="grid grid-cols-1 md:grid-cols-3">
-        {cards.map((card) => (
-          <div key={card.id} className="py-3 flex justify-center items-center mx-2 mt-4">
-            <Card
-              id={card.id}  // Pass `id` to the Card component
-              title={card.title}
-              description={card.description}
-              image={card.image}
+    <div className="bg-black-200 min-h-screen py-8">
+
+      {/* Ongoing Events */}
+      <div className="mt-8">
+        <h2 className="text-4xl font-extrabold text-center text-blue-700 mb-8">Ongoing Events</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-4 lg:px-12">
+          {ongoingEvents.map((event, index) => (
+            <OngoingCard
+              key={index}
+              id={index.toString()}
+              title={event.title}
+              description={event.description}
+              image={event.image}
             />
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </>
+
+      {/* Past Events */}
+      <div className="mt-16">
+        <h2 className="text-4xl font-extrabold text-center text-gray-600 mb-8">Past Events</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-4 lg:px-12">
+          {pastEvents.map((event, index) => (
+            <PastCard
+              key={index}
+              id={index.toString()}
+              title={event.title}
+              description={event.description}
+              image={event.image}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
