@@ -151,7 +151,7 @@ export const EVENTS = [
   },
   {
     title: "Cybersecurity Essentials Seminar",
-    status: "upcoming",
+    status: "ongoing",
     registrationLink: "https://example.com/cybersecurity-registration",
     date: "2025-01-10",
     time: "4:00 PM",
@@ -199,4 +199,5 @@ export const EVENTS = [
       "/images/image_5.jpg",
     ],
   },
+  
 ];
