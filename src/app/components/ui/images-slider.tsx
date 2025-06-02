@@ -70,7 +70,7 @@ export const ImagesSlider = ({
     window.addEventListener("keydown", handleKeyDown);
 
     // autoplay
-    let interval: any;
+    let interval: ReturnType<typeof setInterval>;
     if (autoplay) {
       interval = setInterval(() => {
         handleNext();
@@ -117,35 +117,39 @@ export const ImagesSlider = ({
   const areImagesLoaded = loadedImages.length > 0;
 
   return (
-    <div
-      className={cn(
-        "overflow-hidden h-full w-full relative flex items-center justify-center",
-        className
-      )}
-      style={{
-        perspective: "1000px",
-      }}
-    >
-      {areImagesLoaded && children}
-      {areImagesLoaded && overlay && (
-        <div
-          className={cn("absolute inset-0 bg-black/60 z-40", overlayClassName)}
-        />
-      )}
+  <div
+    className={cn(
+      "overflow-hidden h-full w-full relative flex items-center justify-center",
+      className
+    )}
+    style={{
+      perspective: "1000px",
+    }}
+  >
+    {loading && (
+      <div className="absolute z-50 flex items-center justify-center w-full h-full bg-black/50">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-white"></div>
+      </div>
+    )}
 
-      {areImagesLoaded && (
-        <AnimatePresence>
-          <motion.img
-            key={currentIndex}
-            src={loadedImages[currentIndex]}
-            initial="initial"
-            animate="visible"
-            exit={direction === "up" ? "upExit" : "downExit"}
-            variants={slideVariants}
-            className="image h-full w-full absolute inset-0 object-cover object-center"
-          />
-        </AnimatePresence>
-      )}
-    </div>
-  );
+    {areImagesLoaded && children}
+    {areImagesLoaded && overlay && (
+      <div className={cn("absolute inset-0 bg-black/60 z-40", overlayClassName)} />
+    )}
+    {areImagesLoaded && (
+      <AnimatePresence>
+        <motion.img
+          key={currentIndex}
+          src={loadedImages[currentIndex]}
+          initial="initial"
+          animate="visible"
+          exit={direction === "up" ? "upExit" : "downExit"}
+          variants={slideVariants}
+          className="image h-full w-full absolute inset-0 object-cover object-center"
+        />
+      </AnimatePresence>
+    )}
+  </div>
+);
+
 };

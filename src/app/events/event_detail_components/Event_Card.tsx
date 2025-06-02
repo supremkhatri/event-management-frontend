@@ -29,7 +29,6 @@ const EventDetails: React.FC<EventProps> = ({
   host,
   location,
   cost,
-  image,
   tags,
   description,
   startDate,
