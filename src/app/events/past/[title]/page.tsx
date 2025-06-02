@@ -55,11 +55,11 @@ const EventDetailPage = () => {
 
   useEffect(() => {
     if (title) {
-      const decodedTitle = decodeURIComponent(title).replace(/-/g, ' ');
+      const decodedTitle = decodeURIComponent(title as string).replace(/-/g, ' ');
       const event = EVENTS.find((e) => e.title === decodedTitle);
 
       if (event) {
-        setEventData(event);
+        setEventData(event as Event);
       } else {
         console.error("Event not found:", decodedTitle);
       }

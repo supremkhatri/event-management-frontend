@@ -11,7 +11,7 @@ export default function Events() {
 
       {/* Ongoing Events */}
       <div className="mt-8">
-        <h2 className="text-4xl font-extrabold text-center text-blue-700 mb-8">Ongoing Events</h2>
+        <h2 className="text-4xl font-extrabold text-center text-blue-400 mb-8">Ongoing Events</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-4 lg:px-12">
           {ongoingEvents.map((event, index) => (
             <OngoingCard
@@ -27,7 +27,7 @@ export default function Events() {
 
       {/* Past Events */}
       <div className="mt-16">
-        <h2 className="text-4xl font-extrabold text-center text-gray-600 mb-8">Past Events</h2>
+        <h2 className="text-4xl font-extrabold text-center text-gray-400 mb-8">Past Events</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-4 lg:px-12">
           {pastEvents.map((event, index) => (
             <PastCard

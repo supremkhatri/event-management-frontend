@@ -14,7 +14,7 @@ export default function OngoingCard({
 }) {
   return (
     <div className="bg-white shadow-md hover:shadow-xl transition-shadow transform hover:-translate-y-1 rounded-lg overflow-hidden">
-      <Image src={image} alt={title} width={400} height={250} className="w-full h-48 object-cover" />
+      <Image src={image} alt={title} width={250} height={250} className="w-full  object-cover" />
       <div className="p-6">
         <h3 className="text-xl font-semibold text-blue-900">{title}</h3>
         <p className="text-gray-700 mt-2 text-sm">{description}</p>
