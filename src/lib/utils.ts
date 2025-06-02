@@ -27,8 +27,10 @@ export function countdownToEvent(targetDate = getEventDate()) {
 
     if (isOngoing) return null;  // If not, return stop countdown
 
-    // Move to the next event if it's passed
-    return countdownToEvent(getEventDate(now.getMonth())); 
+    const nextMonth = (now.getMonth() + 1) % 12;
+    const nextYear = nextMonth === 0 ? now.getFullYear() + 1 : now.getFullYear();
+    return countdownToEvent(getEventDate(nextMonth, 30, nextYear));
+
   }
 
   // Calculate days, hours, minutes, and seconds 
