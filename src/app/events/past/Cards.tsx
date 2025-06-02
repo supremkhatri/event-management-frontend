@@ -19,7 +19,7 @@ export default function PastCard({
         alt={title}
         width={400}
         height={250}
-        className="w-full h-48 object-cover grayscale"
+        className="w-full object-cover grayscale"
       />
       <div className="p-6">
         <h3 className="text-xl font-semibold text-gray-700">{title}</h3>

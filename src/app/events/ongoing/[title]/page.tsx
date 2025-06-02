@@ -36,7 +36,7 @@ interface EventStats {
 
 interface Event {
   title: string;
-  status: 'ongoing' | 'past';
+  status: "ongoing" | "past";
   registrationLink: string;
   date: string;
   time: string;
@@ -66,7 +66,7 @@ const EventDetailPage = () => {
       const event = EVENTS.find((e) => e.title === decodedTitle && e.status === 'ongoing');
 
       if (event) {
-        setEventData(event);
+        setEventData(event as Event);
       } else {
         console.error("Ongoing event not found:", decodedTitle);
       }

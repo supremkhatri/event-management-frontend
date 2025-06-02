@@ -14,7 +14,7 @@ export default function Card({
 }) {
 
   return (
-    <div className="card hover:scale-105 hover:shadow-2xl cursor-pointer bg-base-100 transition duration-300 w-96 shadow-xl">
+    <div className="card hover:scale-105 hover:shadow-2xl cursor-pointer bg-base-100 transition duration-200 w-96 shadow-xl">
       <figure>
         <Image src={image} alt={title} width={500} height={300} className="object-cover" />
       </figure>
