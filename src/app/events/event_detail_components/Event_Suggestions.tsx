@@ -17,15 +17,16 @@ const EventSuggestions: React.FC<EventSuggestionsProps> = ({
   allEvents,
 }) => {
   // Function to shuffle events
-  const shuffleArray = (array: Event[]) => {
-    return array
-      .map((item) => ({ ...item, sort: Math.random() })) // Add random sort key
-      .sort((a, b) => a.sort - b.sort) // Sort by random key
-      .map((item) => {
-        const { sort: _sort, ...rest } = item;
-        return rest; // Remove the sort key
-      });
-  };
+  const shuffleArray = (array: Event[]): Event[] => {
+  return array
+    // Add a `sort` property to each event object temporarily for sorting
+    .map((item) => ({ ...item, sort: Math.random() }))
+    // Now we tell TypeScript the type of the sorted array items, including `sort`
+    .sort((a, b) => a.sort - b.sort)
+    // Remove the `sort` property, return as Event type
+    .map(({ sort, ...rest }): Event => rest);
+};
+
 
   // Exclude the current event and shuffle the rest
   const shuffledEvents = shuffleArray(
