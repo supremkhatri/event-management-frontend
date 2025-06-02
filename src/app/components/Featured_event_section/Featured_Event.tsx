@@ -23,7 +23,7 @@ export default function FeaturedEvent() {
               </h1>
               <h1 className="sm:leading-[0.85]">
                 <span className="text-secondary ms-0 ps-0">On</span>
-                <span className="font-extralight"> Djhango</span>
+                <span className="font-extralight"> Django</span>
               </h1>
             </div>
           </div>
