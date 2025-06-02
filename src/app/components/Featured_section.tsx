@@ -1,63 +1,51 @@
 import { cn } from "@/lib/utils";
-import {
- 
-  IconTerminal2,
-} from "@tabler/icons-react";
+import { IconTerminal2 } from "@tabler/icons-react";
 
 export default function FeaturesSectionDemo() {
   const features = [
     {
       title: "Notification",
-      description:
-        "Lorem Epus.",
+      description: "Lorem Epus.",
       icon: <IconTerminal2 />,
     },
     {
       title: "Notification",
-      description:
-        "Lorem Epus.",
+      description: "Lorem Epus.",
       icon: <IconTerminal2 />,
     },
     {
       title: "Notification",
-      description:
-        "Lorem Epus.",
+      description: "Lorem Epus.",
       icon: <IconTerminal2 />,
     },
     {
       title: "Notification",
-      description:
-        "Lorem Epus.",
+      description: "Lorem Epus.",
       icon: <IconTerminal2 />,
     },
     {
       title: "Notification",
-      description:
-        "Lorem Epus.",
+      description: "Lorem Epus.",
       icon: <IconTerminal2 />,
     },
     {
       title: "Notification",
-      description:
-        "Lorem Epus.",
+      description: "Lorem Epus.",
       icon: <IconTerminal2 />,
     },
- 
   ];
-  return (
-    <>
-    <div className=" bg-neutral-950 flex flex-col items-center justify-center">
 
-    <div className="text-2xl sm:text-5xl font-extrabold mt-20 ">
+  return (
+    <div className="bg-neutral-950 flex flex-col items-center justify-center">
+      <div className="text-2xl sm:text-5xl font-extrabold mt-20">
         <h2>Benefits Of Subscribing To EMS</h2>
-    </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 mt-10 lg:grid-cols-3  relative z-10 py-10 max-w-7xl mx-auto">
-      {features.map((feature, index) => (
-          <Feature key={feature.title} {...feature} index={index} />
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 mt-10 lg:grid-cols-3 relative z-10 py-10 max-w-7xl mx-auto">
+        {features.map((feature, index) => (
+          <Feature key={index} {...feature} index={index} />
         ))}
-        </div>
+      </div>
     </div>
-        </>
   );
 }
 
@@ -75,8 +63,9 @@ const Feature = ({
   return (
     <div
       className={cn(
-        "flex flex-col lg:border-r  py-10 relative group/feature bg-neutral-900 dark:border-neutral-800",
-        (index === 0 || index === 4) && "lg:border-l bg-neutral-900 dark:border-neutral-800",
+        "flex flex-col lg:border-r py-10 relative group/feature bg-neutral-900 dark:border-neutral-800",
+        (index === 0 || index === 4) &&
+          "lg:border-l bg-neutral-900 dark:border-neutral-800",
         index < 4 && "lg:border-b bg-neutral-900 dark:border-neutral-800"
       )}
     >
@@ -95,9 +84,9 @@ const Feature = ({
           {title}
         </span>
       </div>
-      <p className="text-sm text-neutral-600 dark:text-neutral-300 max-w-xs relative z-10 px-10">
+      <div className="text-sm text-neutral-600 dark:text-neutral-300 max-w-xs relative z-10 px-10">
         {description}
-      </p>
+      </div>
     </div>
   );
 };
