@@ -1,5 +1,4 @@
 import AboutCard from "./about_cards";
-import { EVENTS } from "@/lib/event_data";
 
 interface AboutEventProps {
   description: string;

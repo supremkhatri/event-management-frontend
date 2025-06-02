@@ -1,5 +1,4 @@
 // AboutCard.tsx
-import { EVENTS } from "@/lib/event_data";
 interface AboutCardProp {
     AboutCardtitle: string;
     AboutCardsubTitle: string;

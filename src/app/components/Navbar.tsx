@@ -6,7 +6,6 @@ import { EVENTS } from "@/lib/event_data";
 
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [showResults, setShowResults] = useState(false);
 

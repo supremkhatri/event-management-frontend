@@ -11,10 +11,15 @@ const validationSchema = Yup.object({
   password: Yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
 });
 
+interface LoginFormValues {
+  email: string;
+  password: string;
+}
+
 // Login component
 const Login: React.FC = () => {
   // Handle form submission
-  const handleSubmit = (values: any) => {
+  const handleSubmit = (values: LoginFormValues) => {
     console.log("Form Data Submitted:", values);
   };
 

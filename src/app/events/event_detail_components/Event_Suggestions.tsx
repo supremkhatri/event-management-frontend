@@ -22,7 +22,7 @@ const EventSuggestions: React.FC<EventSuggestionsProps> = ({
       .map((item) => ({ ...item, sort: Math.random() })) // Add random sort key
       .sort((a, b) => a.sort - b.sort) // Sort by random key
       .map((item) => {
-        const { sort, ...rest } = item;
+        const { sort: _sort, ...rest } = item;
         return rest; // Remove the sort key
       });
   };
