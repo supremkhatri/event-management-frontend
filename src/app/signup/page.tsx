@@ -21,10 +21,20 @@ const validationSchema = Yup.object({
     .oneOf([Yup.ref('password')], "Passwords must match"),
 });
 
+interface SignupFormValues {
+  name: string;
+  email: string;
+  collegeName: string;
+  faculty: string;
+  phoneNumber: string;
+  password: string;
+  confirmPassword: string;
+}
+
 // Signup component
 const Signup: React.FC = () => {
   // Handle form submission
-  const handleSubmit = (values: any) => {
+  const handleSubmit = (values: SignupFormValues) => {
     console.log("Form Data Submitted:", values);
   };
 

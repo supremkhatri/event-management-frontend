@@ -9,7 +9,7 @@ import Presenters from '@/app/events/event_detail_components/presenters';
 import SponsoredBy from '@/app/events/event_detail_components/sponsered-by';
 import Faq from '@/app/components/faq';
 import Gallery from '@/app/events/event_detail_components/gallery';
-import EventSuggestions from '@/app/events/event_detail_components/Event_Suggestions';
+
 import { EVENTS } from "@/lib/event_data";
 
 // Define the types for event data
@@ -77,7 +77,6 @@ const EventDetailPage = () => {
       <Gallery />
       <Faq />
       <SponsoredBy />
-      <EventSuggestions currentEvent={eventData} allEvents={EVENTS} />
     </div>
   );
 };
