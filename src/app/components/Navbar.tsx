@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { EVENTS } from "@/lib/event_data";
 
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -98,7 +99,7 @@ const Navbar = () => {
           <Link href="#" className="hover:text-gray-300">
             Class
           </Link>
-          <Link href="#" className="hover:text-gray-300">
+          <Link href="contact" className="hover:text-gray-300">
             Contact
           </Link>
           <button
