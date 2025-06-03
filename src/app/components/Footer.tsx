@@ -98,7 +98,7 @@ const Footer = () => {
 
       {/* Footer Bottom */}
       <div className="mt-8 border-t border-gray-700 pt-4 text-center text-gray-400">
-        <p>&copy; 2024 Event Management App. All rights reserved.</p>
+        <p>&copy; 2025 Event Management App. All rights reserved.</p>
       </div>
     </footer>
   );

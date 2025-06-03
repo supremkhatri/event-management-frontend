@@ -1,24 +1,32 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { EVENTS } from "@/lib/event_data";
-
+import { useUserStore } from '@/store/useUserStore';
+import { Menu } from '@headlessui/react';
+import { MenuIcon, XIcon } from 'lucide-react';
 
 const Navbar = () => {
+  const { user, isLoggedIn, logout } = useUserStore();
   const [searchQuery, setSearchQuery] = useState("");
   const [showResults, setShowResults] = useState(false);
+
 
   const router = useRouter();
   const pathname = usePathname();
 
-  const navigateHandler = (routerName : string) => {
+  const navigateHandler = (routerName: string) => {
     router.push(routerName);
   };
 
+  useEffect(() => {
+    useUserStore.getState().setUser("Suprem Khatri", "images/image_7.jpg");
+  }, []);
+
   const isLandingPage = pathname === "/";
   const Navbarclass = isLandingPage
-    ? "backdrop-blur-lg mt-2 bg-transparent fixed top-0 w-full z-50"
+    ? "backdrop-blur-lg mt-2 bg-transparent top-0 w-full z-50"
     : "bg-black top-0 w-full z-50";
 
   const filteredResults = EVENTS.filter(
@@ -32,9 +40,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav
-      className={`rounded-3xl w-full top-0 z-50 text-white p-2 border border-emerald-100/10 ${Navbarclass}`}
-    >
+    <nav className={`rounded-3xl fixed w-full top-0 z-50 text-white p-2 border border-emerald-100/10 ${Navbarclass}`}>
       <div className="container mx-auto flex items-center justify-between relative">
         {/* Logo */}
         <div
@@ -71,9 +77,7 @@ const Navbar = () => {
                     />
                     <div>
                       <h4 className="font-bold">{event.title}</h4>
-                      <p className="text-sm text-gray-400">
-                        {event.description}
-                      </p>
+                      <p className="text-sm text-gray-400">{event.description}</p>
                       <div className="text-xs text-gray-500 mt-1">
                         Tags: {event.tags.join(", ")}
                       </div>
@@ -90,7 +94,7 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Links and Buttons */}
+        {/* Navigation Links */}
         <div className="hidden md:flex items-center space-x-7 mr-6">
           <Link href="/events" className="hover:text-gray-300">
             Events
@@ -101,19 +105,146 @@ const Navbar = () => {
           <Link href="/contact" className="hover:text-gray-300">
             Contact
           </Link>
-          <button
-            onClick={() => navigateHandler("/signup")}
-            className="bg-white text-black border border-black px-4 py-2 rounded-md transition-transform transform hover:bg-black hover:text-white hover:border-white hover:scale-105"
-          >
-            Signup
-          </button>
-          <button
-            onClick={() => navigateHandler("/login")}
-            className="bg-transparent text-white border border-white px-4 py-2 rounded-md transition-transform transform hover:bg-white hover:text-black hover:scale-105"
-          >
-            Login
-          </button>
+
+          {/* Desktop Auth */}
+          {isLoggedIn && user ? (
+            <Menu as="div" className="relative">
+              <Menu.Button>
+                <img
+                  src={user.photo}
+                  alt="avatar"
+                  className="w-8 h-8 rounded-full cursor-pointer"
+                />
+              </Menu.Button>
+              <Menu.Items className="absolute right-0 mt-2 w-28 bg-white text-black rounded shadow-lg z-10">
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      onClick={logout}
+                      className={`block bg-red-400 w-full text-left px-4 py-2 ${active ? "bg-red-200" : ""}`}
+                    >
+                      Logout
+                    </button>
+                  )}
+                </Menu.Item>
+              </Menu.Items>
+            </Menu>
+          ) : (
+            <>
+              <button
+                onClick={() => navigateHandler("/signup")}
+                className="bg-white text-black px-4 py-2 rounded hover:bg-black hover:text-white"
+              >
+                Signup
+              </button>
+              <button
+                onClick={() => navigateHandler("/login")}
+                className="border border-white px-4 py-2 rounded hover:bg-white hover:text-black"
+              >
+                Login
+              </button>
+            </>
+          )}
         </div>
+
+        {/* Mobile Menu */}
+        {isLoggedIn && user ? (
+          <div className="flex md:hidden justify-between items-center space-x-4 mr-4">
+            <Menu as="div" className="relative">
+              <Menu.Button>
+                <img
+                  src={user.photo}
+                  alt="avatar"
+                  className="w-8 h-8 rounded-full cursor-pointer"
+                />
+              </Menu.Button>
+              <Menu.Items className="absolute right-0 mt-2 w-28 bg-white text-black rounded shadow-lg z-10">
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      onClick={logout}
+                      className={`block w-full bg-red-400 text-left px-4 py-2 ${active ? "bg-red-200" : ""}`}
+                    >
+                      Logout
+                    </button>
+                  )}
+                </Menu.Item>
+              </Menu.Items>
+            </Menu>
+            <Menu as="div" className="relative inline-block text-left">
+              {({open}) => (
+                <>
+              <Menu.Button>
+                {open ? <XIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
+              </Menu.Button>
+                <Menu.Items className="absolute right-0 mt-2 w-40 bg-black text-white rounded-md shadow-lg z-50 flex flex-col items-start p-2 space-y-2">
+                  <Menu.Item>
+                    <Link href="/events" className="hover:text-gray-300">
+            Events
+          </Link>
+                  </Menu.Item>
+                  <Menu.Item>
+                    <Link href="#" className="hover:text-gray-300">
+            Class
+          </Link>
+                  </Menu.Item>
+                  <Menu.Item>
+<Link href="/contact" className="hover:text-gray-300">
+            Contact
+          </Link>
+                  </Menu.Item>
+                </Menu.Items>
+              </>
+              )}
+            </Menu>
+          </div>
+        ):(
+          <>
+          <Menu as="div" className="relative md:hidden inline-block text-left">
+            {({open})=>(
+            
+                <>
+              <Menu.Button>
+                {open ? <XIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
+              </Menu.Button>                  
+                <Menu.Items className="absolute right-0 mt-2 w-40 bg-black text-white rounded-md shadow-lg z-50 flex flex-col items-start p-2 space-y-4">
+                  <Menu.Item>
+                    <Link href="/events" className="hover:text-gray-300">
+            Events
+          </Link>
+                  </Menu.Item>
+                  <Menu.Item>
+                    <Link href="#" className="hover:text-gray-300">
+            Class
+          </Link>
+                  </Menu.Item>
+                  <Menu.Item>
+<Link href="/contact" className="hover:text-gray-300">
+            Contact
+          </Link>
+                  </Menu.Item>
+                  <Menu.Item>
+                    <button
+                      onClick={() => navigateHandler("/signup")}
+                      className=" hover:bg-neutral-800 bg-green-800 border-none p-2 rounded border  w-full "
+                      >
+                      SignUp
+                    </button>
+                  </Menu.Item>
+                  <Menu.Item>
+                    <button
+                      onClick={() => navigateHandler("/login")}
+                      className=" hover:bg-neutral-800 bg-blue-800 w-full border-none p-2 rounded"
+                      >
+                      Login
+                    </button>
+                  </Menu.Item>
+                </Menu.Items>
+              </>
+              )}
+            </Menu>
+              </>
+            )}
       </div>
     </nav>
   );
