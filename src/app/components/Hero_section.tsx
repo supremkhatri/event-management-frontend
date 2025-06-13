@@ -57,7 +57,7 @@ export default function ImagesSliderDemo() {
           {user.name} 
         </motion.h1>
         <motion.p className="text-6xl md:text-5xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-2 mt-2">
-          Let`&apos;`s Learn Something <br />
+          Let &apos;s Learn Something <br />
           <FlipWords words={words} />
           Today
         </motion.p>
