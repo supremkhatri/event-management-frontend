@@ -17,7 +17,7 @@ export default function Classes() {
   const user = useUserStore((state) => state.user);
   if (!user) {
     return( <div className="py-24 my-8 h-96 text-center text-stone-300">
-        <h2 className="text-4xl font-semibold mb-4">You're not logged in</h2>
+        <h2 className="text-4xl font-semibold mb-4">You`&apos;`re not logged in</h2>
         <p className="text-lg">Please LogIn/SignUp to view your subscribed classes.</p>
       </div>
     )
