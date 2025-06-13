@@ -4,33 +4,38 @@ import { IconTerminal2 } from "@tabler/icons-react";
 export default function FeaturesSectionDemo() {
   const features = [
     {
-      title: "Notification",
-      description: "Lorem Epus.",
+      title: "Instant Notifications",
+      description: "Get real-time updates about upcoming events and deadlines.",
       icon: <IconTerminal2 />,
     },
     {
-      title: "Notification",
-      description: "Lorem Epus.",
+      title: "Easy Registration",
+      description:
+        "Register for any event in just a few clicks with instant confirmation.",
       icon: <IconTerminal2 />,
     },
     {
-      title: "Notification",
-      description: "Lorem Epus.",
+      title: "Smart Reminders",
+      description:
+        "Receive personalized reminders before events, so you’re always on time.",
       icon: <IconTerminal2 />,
     },
     {
-      title: "Notification",
-      description: "Lorem Epus.",
+      title: "Certificates",
+      description:
+        "Automatically receive digital certificates after attending events.",
       icon: <IconTerminal2 />,
     },
     {
-      title: "Notification",
-      description: "Lorem Epus.",
+      title: "Personal Dashboard",
+      description:
+        "Track your registered events, feedback, and certificates in one place.",
       icon: <IconTerminal2 />,
     },
     {
-      title: "Notification",
-      description: "Lorem Epus.",
+      title: "Feedback System",
+      description:
+        "Give your opinions and help organizers improve future events.",
       icon: <IconTerminal2 />,
     },
   ];

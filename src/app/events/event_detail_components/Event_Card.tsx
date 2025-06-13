@@ -23,7 +23,7 @@ interface EventProps {
 
 const EventDetails: React.FC<EventProps> = ({
   title,
-  registrationLink, // Accept registration link
+  registrationLink,
   date,
   time,
   host,
@@ -43,7 +43,7 @@ const EventDetails: React.FC<EventProps> = ({
     if (event) {
       const eventStartDate = new Date(event.startDate);
       const currentDate = new Date();
-      
+
       // Check if the event has passed based on the start date or if its status is 'past'
       setIsEventPast(eventStartDate < currentDate || event.status === "past");
     }
@@ -70,11 +70,16 @@ const EventDetails: React.FC<EventProps> = ({
   };
 
   return (
-    <div className="flex flex-col max-w-4xl mx-auto bg-black text-white shadow-lg rounded-lg p-6 space-y-6 transition-transform hover:scale-105 hover:shadow-2xl">
-      <h1 className="text-4xl font-bold text-center text-orange-500">{title}</h1>
+    <div className="flex mt-14 flex-col max-w-4xl mx-auto bg-black text-white shadow-lg rounded-lg p-6 space-y-6 transition-transform hover:scale-105 hover:shadow-2xl">
+      <h1 className="text-4xl font-bold text-center text-orange-500">
+        {title}
+      </h1>
       <div className="mt-2 text-sm flex flex-wrap justify-center gap-2">
         {tags.map((tag, index) => (
-          <span key={index} className="bg-blue-100 text-black px-3 py-1 rounded-full">
+          <span
+            key={index}
+            className="bg-blue-100 text-black px-3 py-1 rounded-full"
+          >
             {tag}
           </span>
         ))}

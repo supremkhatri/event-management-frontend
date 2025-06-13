@@ -1,21 +1,21 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
-import AboutEvent from '@/app/events/event_detail_components/about_event_container';
-import Stats from '@/app/events/event_detail_components/event_stats';
-import EventDetails from '@/app/events/event_detail_components/Event_Card';
-import Presenters from '@/app/events/event_detail_components/presenters';
-import SponsoredBy from '@/app/events/event_detail_components/sponsered-by';
-import Faq from '@/app/components/faq';
-import Gallery from '@/app/events/event_detail_components/gallery';
+import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
+import AboutEvent from "@/app/events/event_detail_components/about_event_container";
+import Stats from "@/app/events/event_detail_components/event_stats";
+import EventDetails from "@/app/events/event_detail_components/Event_Card";
+import Presenters from "@/app/events/event_detail_components/presenters";
+import SponsoredBy from "@/app/events/event_detail_components/sponsered-by";
+import Faq from "@/app/components/faq";
+import Gallery from "@/app/events/event_detail_components/gallery";
 
 import { EVENTS } from "@/lib/event_data";
 
 // Define the types for event data
 interface Event {
   title: string;
-  status: 'ongoing' | 'past';
+  status: "ongoing" | "past";
   registrationLink?: string;
   date: string;
   time: string;
@@ -47,6 +47,7 @@ interface Event {
     panel: string;
     img: string;
   }>;
+  images: string[];
 }
 
 const EventDetailPage = () => {
@@ -55,7 +56,10 @@ const EventDetailPage = () => {
 
   useEffect(() => {
     if (title) {
-      const decodedTitle = decodeURIComponent(title as string).replace(/-/g, ' ');
+      const decodedTitle = decodeURIComponent(title as string).replace(
+        /-/g,
+        " "
+      );
       const event = EVENTS.find((e) => e.title === decodedTitle);
 
       if (event) {
@@ -75,8 +79,8 @@ const EventDetailPage = () => {
       <Stats EventStats={eventData.EventStats} />
       <Presenters presenters={eventData.Presenters || []} />
       <Gallery />
+      <SponsoredBy sponsers={eventData.images || []} />
       <Faq />
-      <SponsoredBy />
     </div>
   );
 };

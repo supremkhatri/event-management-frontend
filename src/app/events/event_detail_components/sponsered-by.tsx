@@ -2,15 +2,12 @@
 
 import Image from "next/image";
 
-const SPONSORS = [
-  "ecast",
-  "ecast",
-  "ecast",
-  "ecast",
-  "ecast",
-];
 
-export function SponsoredBy() {
+interface SponseredByProps{
+  sponsers: string[];
+}
+
+export function SponsoredBy({sponsers}:SponseredByProps) {
   return (
     <section className="py-8 px-8 lg:py-20 bg-black">
       <div className="container mx-auto text-center">
@@ -18,14 +15,14 @@ export function SponsoredBy() {
           SPONSORED BY
         </h2>
         <div className="flex flex-wrap items-center justify-center gap-6">
-          {SPONSORS.map((logo, key) => (
+          {sponsers.map((logo, key) => (
             <Image
               width={256}
               height={256}
               key={key}
-              src={`/images/sponsers/${logo}-logo.png`}
+              src={logo}
               alt={logo}
-              className="w-40 transition-transform transform hover:scale-110"
+              className="w-40 transition-transform  rounded-full transform hover:scale-110"
             />
           ))}
         </div>

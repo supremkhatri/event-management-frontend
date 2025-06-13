@@ -3,15 +3,14 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { EVENTS } from "@/lib/event_data";
-import { useUserStore } from '@/store/useUserStore';
-import { Menu } from '@headlessui/react';
-import { MenuIcon, XIcon } from 'lucide-react';
+import { useUserStore } from "@/store/useUserStore";
+import { Menu } from "@headlessui/react";
+import { MenuIcon, XIcon } from "lucide-react";
 
 const Navbar = () => {
   const { user, isLoggedIn, logout } = useUserStore();
   const [searchQuery, setSearchQuery] = useState("");
   const [showResults, setShowResults] = useState(false);
-
 
   const router = useRouter();
   const pathname = usePathname();
@@ -21,7 +20,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    useUserStore.getState().setUser("Suprem Khatri", "images/image_7.jpg");
+    useUserStore.getState().setUser("Suprem Khatri", "images/image_6.jpg");
   }, []);
 
   const isLandingPage = pathname === "/";
@@ -40,7 +39,9 @@ const Navbar = () => {
   );
 
   return (
-    <nav className={`rounded-3xl fixed w-full top-0 z-50 text-white p-2 border border-emerald-100/10 ${Navbarclass}`}>
+    <nav
+      className={`rounded-3xl fixed w-full top-0 z-50 text-white p-2 border border-emerald-100/10 ${Navbarclass}`}
+    >
       <div className="container mx-auto flex items-center justify-between relative">
         {/* Logo */}
         <div
@@ -67,7 +68,10 @@ const Navbar = () => {
                 filteredResults.map((event, index) => (
                   <Link
                     key={index}
-                    href={`/events/${event.status}/${event.title.replace(/\s+/g, '-')}`}
+                    href={`/events/${event.status}/${event.title.replace(
+                      /\s+/g,
+                      "-"
+                    )}`}
                     className="flex items-start mb-4 hover:bg-neutral-700 p-2 rounded"
                   >
                     <img
@@ -77,7 +81,9 @@ const Navbar = () => {
                     />
                     <div>
                       <h4 className="font-bold">{event.title}</h4>
-                      <p className="text-sm text-gray-400">{event.description}</p>
+                      <p className="text-sm text-gray-400">
+                        {event.description}
+                      </p>
                       <div className="text-xs text-gray-500 mt-1">
                         Tags: {event.tags.join(", ")}
                       </div>
@@ -99,7 +105,7 @@ const Navbar = () => {
           <Link href="/events" className="hover:text-gray-300">
             Events
           </Link>
-          <Link href="#" className="hover:text-gray-300">
+          <Link href="/class" className="hover:text-gray-300">
             Class
           </Link>
           <Link href="/contact" className="hover:text-gray-300">
@@ -121,7 +127,9 @@ const Navbar = () => {
                   {({ active }) => (
                     <button
                       onClick={logout}
-                      className={`block bg-red-400 w-full text-left px-4 py-2 ${active ? "bg-red-200" : ""}`}
+                      className={`block bg-red-400 w-full text-left px-4 py-2 ${
+                        active ? "bg-red-200" : ""
+                      }`}
                     >
                       Logout
                     </button>
@@ -163,7 +171,9 @@ const Navbar = () => {
                   {({ active }) => (
                     <button
                       onClick={logout}
-                      className={`block w-full bg-red-400 text-left px-4 py-2 ${active ? "bg-red-200" : ""}`}
+                      className={`block w-full bg-red-400 text-left px-4 py-2 ${
+                        active ? "bg-red-200" : ""
+                      }`}
                     >
                       Logout
                     </button>
@@ -172,79 +182,89 @@ const Navbar = () => {
               </Menu.Items>
             </Menu>
             <Menu as="div" className="relative inline-block text-left">
-              {({open}) => (
+              {({ open }) => (
                 <>
-              <Menu.Button>
-                {open ? <XIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
-              </Menu.Button>
-                <Menu.Items className="absolute right-0 mt-2 w-40 bg-black text-white rounded-md shadow-lg z-50 flex flex-col items-start p-2 space-y-2">
-                  <Menu.Item>
-                    <Link href="/events" className="hover:text-gray-300">
-            Events
-          </Link>
-                  </Menu.Item>
-                  <Menu.Item>
-                    <Link href="#" className="hover:text-gray-300">
-            Class
-          </Link>
-                  </Menu.Item>
-                  <Menu.Item>
-<Link href="/contact" className="hover:text-gray-300">
-            Contact
-          </Link>
-                  </Menu.Item>
-                </Menu.Items>
-              </>
+                  <Menu.Button>
+                    {open ? (
+                      <XIcon className="h-6 w-6" />
+                    ) : (
+                      <MenuIcon className="h-6 w-6" />
+                    )}
+                  </Menu.Button>
+                  <Menu.Items className="absolute right-0 mt-2 w-40 bg-black text-white rounded-md shadow-lg z-50 flex flex-col items-start p-2 space-y-2">
+                    <Menu.Item>
+                      <Link href="/events" className="hover:text-gray-300">
+                        Events
+                      </Link>
+                    </Menu.Item>
+                    <Menu.Item>
+                      <Link href="/class" className="hover:text-gray-300">
+                        Class
+                      </Link>
+                    </Menu.Item>
+                    <Menu.Item>
+                      <Link href="/contact" className="hover:text-gray-300">
+                        Contact
+                      </Link>
+                    </Menu.Item>
+                  </Menu.Items>
+                </>
               )}
             </Menu>
           </div>
-        ):(
+        ) : (
           <>
-          <Menu as="div" className="relative md:hidden inline-block text-left">
-            {({open})=>(
-            
+            <Menu
+              as="div"
+              className="relative md:hidden inline-block text-left"
+            >
+              {({ open }) => (
                 <>
-              <Menu.Button>
-                {open ? <XIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
-              </Menu.Button>                  
-                <Menu.Items className="absolute right-0 mt-2 w-40 bg-black text-white rounded-md shadow-lg z-50 flex flex-col items-start p-2 space-y-4">
-                  <Menu.Item>
-                    <Link href="/events" className="hover:text-gray-300">
-            Events
-          </Link>
-                  </Menu.Item>
-                  <Menu.Item>
-                    <Link href="#" className="hover:text-gray-300">
-            Class
-          </Link>
-                  </Menu.Item>
-                  <Menu.Item>
-<Link href="/contact" className="hover:text-gray-300">
-            Contact
-          </Link>
-                  </Menu.Item>
-                  <Menu.Item>
-                    <button
-                      onClick={() => navigateHandler("/signup")}
-                      className=" hover:bg-neutral-800 bg-green-800 border-none p-2 rounded border  w-full "
+                  <Menu.Button>
+                    {open ? (
+                      <XIcon className="h-6 w-6" />
+                    ) : (
+                      <MenuIcon className="h-6 w-6" />
+                    )}
+                  </Menu.Button>
+                  <Menu.Items className="absolute right-0 mt-2 w-40 bg-black text-white rounded-md shadow-lg z-50 flex flex-col items-start p-2 space-y-4">
+                    <Menu.Item>
+                      <Link href="/events" className="hover:text-gray-300">
+                        Events
+                      </Link>
+                    </Menu.Item>
+                    <Menu.Item>
+                      <Link href="/class" className="hover:text-gray-300">
+                        Class
+                      </Link>
+                    </Menu.Item>
+                    <Menu.Item>
+                      <Link href="/contact" className="hover:text-gray-300">
+                        Contact
+                      </Link>
+                    </Menu.Item>
+                    <Menu.Item>
+                      <button
+                        onClick={() => navigateHandler("/signup")}
+                        className=" hover:bg-neutral-800 bg-green-800 border-none p-2 rounded border  w-full "
                       >
-                      SignUp
-                    </button>
-                  </Menu.Item>
-                  <Menu.Item>
-                    <button
-                      onClick={() => navigateHandler("/login")}
-                      className=" hover:bg-neutral-800 bg-blue-800 w-full border-none p-2 rounded"
+                        SignUp
+                      </button>
+                    </Menu.Item>
+                    <Menu.Item>
+                      <button
+                        onClick={() => navigateHandler("/login")}
+                        className=" hover:bg-neutral-800 bg-blue-800 w-full border-none p-2 rounded"
                       >
-                      Login
-                    </button>
-                  </Menu.Item>
-                </Menu.Items>
-              </>
+                        Login
+                      </button>
+                    </Menu.Item>
+                  </Menu.Items>
+                </>
               )}
             </Menu>
-              </>
-            )}
+          </>
+        )}
       </div>
     </nav>
   );

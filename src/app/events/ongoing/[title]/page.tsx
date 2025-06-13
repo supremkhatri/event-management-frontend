@@ -52,6 +52,7 @@ interface Event {
   cards: EventCard[];
   EventStats: EventStats;
   Presenters: Presenter[];
+  images: string[];
 }
 
 const EventDetailPage = () => {
@@ -86,8 +87,8 @@ const EventDetailPage = () => {
       <AboutEvent description={eventData.description} cards={eventData.cards} />
       <Stats EventStats={eventData.EventStats} />
       <Presenters presenters={eventData.Presenters || []} />
+      <SponsoredBy sponsers={eventData.images || []}  />
       <Faq />
-      <SponsoredBy />
       
     </div>
   );

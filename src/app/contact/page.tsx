@@ -3,13 +3,13 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="bg-white dark:bg-black py-12 px-6 md:px-12"
+      className="bg-white dark:bg-black mt-10 py-12 px-6 md:px-12"
     >
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-4">
+      <div className="max-w-4xl mx-auto">
+        <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-gray-200 mb-4">
           Contact Us
         </h2>
-        <p className="text-gray-600 dark:text-gray-400 mb-8">
+        <p className="text-gray-600 text-center dark:text-gray-400 mb-8">
           Have questions or want to collaborate with us? Fill out the form below
           or reach out directly!
         </p>

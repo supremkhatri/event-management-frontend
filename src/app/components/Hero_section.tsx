@@ -47,18 +47,21 @@ export default function ImagesSliderDemo() {
           duration: 0.6,
         }}
         className="z-50 flex flex-col justify-center items-center"
-      > 
+      >
         <motion.p className="font-bold text-6xl md:text-6xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-2 m-0">
           Regsiter Now! <br /> For <FlipWords words={words} />
           Events
         </motion.p>
         {readmore && (
-            <span className="bg-clip-text text-transparent bg-gradient-to-b from-blue-50 to-blue-400 text-center text-3xl md:text-3xl m-0 p-0">
-              <br /> Events that shape your skills & spark your passion.
-              <br /> Be part of something bigger.
-            </span>
-          )}
-        <span onClick={handleReadMore} className="text-center cursor-pointer underline text-neutral-400 text-xs md:text-xs max-w-2xl mt-1 px-2">
+          <span className="bg-clip-text text-transparent bg-gradient-to-b from-blue-50 to-blue-400 text-center text-3xl md:text-3xl m-0 p-0">
+            <br /> Events that shape your skills & spark your passion.
+            <br /> Be part of something bigger.
+          </span>
+        )}
+        <span
+          onClick={handleReadMore}
+          className="text-center cursor-pointer underline text-neutral-400 text-xs md:text-xs max-w-2xl mt-1 px-2"
+        >
           {state}
         </span>
         <button className="px-4 py-2 backdrop-blur-sm border bg-blue-300/10 hover:bg-gray-900/10 border-white text-white mx-auto text-center rounded-full relative mt-4">

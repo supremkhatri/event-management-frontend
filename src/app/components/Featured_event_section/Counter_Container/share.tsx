@@ -17,7 +17,7 @@ function EventAction({ isShort }: Props) {
   const actionLink = useMemo(
     () =>
       isOngoing
-        ? "https://www.meet.google.com/"
+        ? "https://meet.google.com/landing"
         : "https://forms.google.com/",
     [isOngoing]
   );

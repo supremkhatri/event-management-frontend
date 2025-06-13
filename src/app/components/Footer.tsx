@@ -8,7 +8,6 @@ import {
   IconBrandLinkedin,
 } from "@tabler/icons-react";
 
-
 const Footer = () => {
   return (
     <footer className="bg-gray-800/10 text-white py-8 px-10">
@@ -77,7 +76,9 @@ const Footer = () => {
 
       {/* Subscription Section */}
       <div className="mt-12 text-center">
-        <h3 className="font-bold text-2xl md:text-3xl mb-4 text-white">Stay Updated</h3>
+        <h3 className="font-bold text-2xl md:text-3xl mb-4 text-white">
+          Stay Updated
+        </h3>
         <p className="text-gray-400 mb-6 text-lg md:text-xl">
           Subscribe to our newsletter for the latest updates.
         </p>

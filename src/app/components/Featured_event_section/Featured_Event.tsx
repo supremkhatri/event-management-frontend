@@ -4,9 +4,9 @@ import { monthInFocus } from "@/lib/constants";
 
 export default function FeaturedEvent() {
   return (
-    <section className="h-fit lg:h-[85vh] lg:min-h-[575px] lg:max-h-[768px] bg-dark text-slate-200 animate-fade-in">
-      <article className="container h-full grid lg:grid-cols-[1fr,400px] xl:grid-cols-[1fr,475px] gap-20 lg:gap-14 xl:gap-20 items-center pt-6 pb-20 sm:pt-10 sm:pb-24 lg:py-12">
-        <div className="ml-20 flex flex-col gap-1 sm:gap-2 max-lg:items-center max-lg:text-center">
+    <section className="h-fit  lg:h-[85vh] lg:min-h-[575px] lg:max-h-[768px] bg-dark text-slate-200 animate-fade-in">
+      <article className="container md:ml-20 h-full grid lg:grid-cols-[1fr,475px] xl:grid-cols-[1fr,475px] gap-20 lg:gap-14 xl:gap-20 justify-center items-center pt-6 pb-20 sm:pt-10 sm:pb-24 lg:py-12">
+        <div className="flex flex-col gap-1 sm:gap-2 items-center justify-center text-center">
           <div>
             <h5 className="uppercase relative max-sm:top-1 text-lg">
               <span className="text-secondary font-bold">Happening </span>{" "}

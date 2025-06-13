@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Image from "next/image";
 
@@ -20,12 +20,12 @@ export function EventContentCard({
   img,
 }: PresenterProps) {
   return (
-    <div className="flex flex-col lg:flex-row mb-10 bg-gray-900 shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out rounded-lg overflow-hidden text-white">
+    <div className="flex flex-col items-center justify-between text-center mb-10 bg-gray-900 shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out rounded-lg overflow-hidden text-white">
       {/* Image Section */}
-      <div className="h-[20rem] lg:h-[32rem] lg:w-[28rem] shrink-0 relative">
+      <div className="h-[20rem] lg:h-[32rem] lg:w-[25rem] shrink-0 relative">
         <Image
-          width={768}
-          height={768}
+          width={500}
+          height={500}
           src={img}
           alt="Event image"
           className="h-full w-full object-cover hover:scale-105 transition-transform duration-300"
@@ -44,7 +44,7 @@ export function EventContentCard({
         <div className="flex items-center gap-4">
           <div className="rounded-full w-14 h-14 bg-gray-200 shadow-md hover:shadow-lg flex items-center justify-center">
             <Image
-              width={31}
+              width={25}
               height={31}
               src="/images/sponsers/ecast-logo.png"
               alt="Logo"

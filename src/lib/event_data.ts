@@ -15,9 +15,23 @@ export const EVENTS = [
     startDate: "20241218T100000Z",
     endDate: "20241218T160000Z",
     cards: [
-      { AboutCardtitle: "Introduction to AI", AboutCardsubTitle: "What is AI?", AboutCarddescription: "Learn the basics of artificial intelligence." },
-      { AboutCardtitle: "Machine Learning Algorithms", AboutCardsubTitle: "Learn ML", AboutCarddescription: "Explore the different algorithms used in machine learning." },
-      { AboutCardtitle: "Hands-on with Python", AboutCardsubTitle: "Python for ML", AboutCarddescription: "Learn how to implement machine learning algorithms with Python." },
+      {
+        AboutCardtitle: "Introduction to AI",
+        AboutCardsubTitle: "What is AI?",
+        AboutCarddescription: "Learn the basics of artificial intelligence.",
+      },
+      {
+        AboutCardtitle: "Machine Learning Algorithms",
+        AboutCardsubTitle: "Learn ML",
+        AboutCarddescription:
+          "Explore the different algorithms used in machine learning.",
+      },
+      {
+        AboutCardtitle: "Hands-on with Python",
+        AboutCardsubTitle: "Python for ML",
+        AboutCarddescription:
+          "Learn how to implement machine learning algorithms with Python.",
+      },
     ],
     EventStats: {
       Participants: "300+",
@@ -25,6 +39,14 @@ export const EVENTS = [
       Workshops: "2",
       Days: "1",
     },
+    termsAndConditions: [
+      "Participants must bring their own laptops with Python installed.",
+      "Certificate will only be awarded upon completion of all sessions.",
+      "Photography and videography may be conducted for promotional use.",
+      "Registration is mandatory and non-transferable.",
+      "The organizers reserve the right to modify the schedule at any time.",
+    ],
+
     Presenters: [
       {
         title: "AI for the Future",
@@ -64,9 +86,22 @@ export const EVENTS = [
     startDate: "20240822T150000Z",
     endDate: "20240822T170000Z",
     cards: [
-      { AboutCardtitle: "Blockchain Basics", AboutCardsubTitle: "Learn Blockchain", AboutCarddescription: "Understanding the fundamentals of blockchain technology." },
-      { AboutCardtitle: "Cryptocurrency Insights", AboutCardsubTitle: "Crypto 101", AboutCarddescription: "Learn about the evolution of cryptocurrencies." },
-      { AboutCardtitle: "Cryptocurrency Insights", AboutCardsubTitle: "Crypto 101", AboutCarddescription: "Learn about the evolution of cryptocurrencies." },
+      {
+        AboutCardtitle: "Blockchain Basics",
+        AboutCardsubTitle: "Learn Blockchain",
+        AboutCarddescription:
+          "Understanding the fundamentals of blockchain technology.",
+      },
+      {
+        AboutCardtitle: "Cryptocurrency Insights",
+        AboutCardsubTitle: "Crypto 101",
+        AboutCarddescription: "Learn about the evolution of cryptocurrencies.",
+      },
+      {
+        AboutCardtitle: "Cryptocurrency Insights",
+        AboutCardsubTitle: "Crypto 101",
+        AboutCarddescription: "Learn about the evolution of cryptocurrencies.",
+      },
     ],
     EventStats: {
       Participants: "500+",
@@ -74,6 +109,14 @@ export const EVENTS = [
       Workshops: "1",
       Days: "1",
     },
+    termsAndConditions: [
+      "No refunds will be issued after registration.",
+      "Attendees must provide a valid ID at the entrance.",
+      "Use of recording devices during the sessions is prohibited.",
+      "Seats are limited and available on a first-come, first-served basis.",
+      "Organizers are not responsible for any lost or stolen items.",
+    ],
+
     Presenters: [
       {
         title: "The Rise of Blockchain",
@@ -110,13 +153,28 @@ export const EVENTS = [
     image: "/images/image_2.jpg",
     tags: ["Frontend", "React", "Workshop"],
     coordinates: { lat: 34.0522, lng: -118.2437 },
-    description: "A bootcamp to master frontend technologies like HTML, CSS, and React.",
+    description:
+      "A bootcamp to master frontend technologies like HTML, CSS, and React.",
     startDate: "20241220T090000Z",
     endDate: "20241220T160000Z",
     cards: [
-      { AboutCardtitle: "HTML5 Basics", AboutCardsubTitle: "Learn HTML", AboutCarddescription: "Learn the foundational elements of HTML5." },
-      { AboutCardtitle: "CSS Styling", AboutCardsubTitle: "Web Styling", AboutCarddescription: "Dive into advanced CSS concepts for styling web pages." },
-      { AboutCardtitle: "Building with React", AboutCardsubTitle: "React Framework", AboutCarddescription: "Learn how to build dynamic web apps using React." },
+      {
+        AboutCardtitle: "HTML5 Basics",
+        AboutCardsubTitle: "Learn HTML",
+        AboutCarddescription: "Learn the foundational elements of HTML5.",
+      },
+      {
+        AboutCardtitle: "CSS Styling",
+        AboutCardsubTitle: "Web Styling",
+        AboutCarddescription:
+          "Dive into advanced CSS concepts for styling web pages.",
+      },
+      {
+        AboutCardtitle: "Building with React",
+        AboutCardsubTitle: "React Framework",
+        AboutCarddescription:
+          "Learn how to build dynamic web apps using React.",
+      },
     ],
     EventStats: {
       Participants: "150+",
@@ -124,6 +182,14 @@ export const EVENTS = [
       Workshops: "2",
       Days: "1",
     },
+    termsAndConditions: [
+      "Participants are required to bring a laptop with Node.js and Git installed.",
+      "Workshops will include hands-on projects—active participation is expected.",
+      "Late arrivals (more than 30 minutes) may be denied entry.",
+      "No refund policy applies once the payment is completed.",
+      "Organizers may change speakers or schedule without prior notice.",
+    ],
+
     Presenters: [
       {
         title: "Mastering React for the Future",
@@ -133,7 +199,7 @@ export const EVENTS = [
         panel: "Keynote Speaker",
         img: "/images/presenters/Anonymous.jpg",
       },
-      
+
       {
         title: "CSS Best Practices",
         des: "CSS techniques for modern web development.",
@@ -161,13 +227,27 @@ export const EVENTS = [
     image: "/images/image_9.jpg",
     tags: ["Cybersecurity", "Seminar", "Tech"],
     coordinates: { lat: 51.5074, lng: -0.1278 },
-    description: "A seminar focused on the latest trends in cybersecurity and data protection.",
+    description:
+      "A seminar focused on the latest trends in cybersecurity and data protection.",
     startDate: "20250110T160000Z",
     endDate: "20250110T180000Z",
     cards: [
-      { AboutCardtitle: "Introduction to Cybersecurity", AboutCardsubTitle: "What is Cybersecurity?", AboutCarddescription: "A basic overview of cybersecurity principles." },
-      { AboutCardtitle: "Data Protection in 2025", AboutCardsubTitle: "Protecting Your Data", AboutCarddescription: "How to secure your data in the evolving tech landscape." },
-      { AboutCardtitle: "Cryptocurrency Insights", AboutCardsubTitle: "Crypto 101", AboutCarddescription: "Learn about the evolution of cryptocurrencies." },
+      {
+        AboutCardtitle: "Introduction to Cybersecurity",
+        AboutCardsubTitle: "What is Cybersecurity?",
+        AboutCarddescription: "A basic overview of cybersecurity principles.",
+      },
+      {
+        AboutCardtitle: "Data Protection in 2025",
+        AboutCardsubTitle: "Protecting Your Data",
+        AboutCarddescription:
+          "How to secure your data in the evolving tech landscape.",
+      },
+      {
+        AboutCardtitle: "Cryptocurrency Insights",
+        AboutCardsubTitle: "Crypto 101",
+        AboutCarddescription: "Learn about the evolution of cryptocurrencies.",
+      },
     ],
     EventStats: {
       Participants: "200+",
@@ -175,6 +255,13 @@ export const EVENTS = [
       Workshops: "1",
       Days: "1",
     },
+     termsAndConditions: [
+      "Participants are required to bring a laptop with Node.js and Git installed.",
+      "Workshops will include hands-on projects—active participation is expected.",
+      "Late arrivals (more than 30 minutes) may be denied entry.",
+      "No refund policy applies once the payment is completed.",
+      "Organizers may change speakers or schedule without prior notice.",
+    ],
     Presenters: [
       {
         title: "Future of Cybersecurity",
@@ -199,5 +286,4 @@ export const EVENTS = [
       "/images/image_3.jpg",
     ],
   },
-  
 ];
