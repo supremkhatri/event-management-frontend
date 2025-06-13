@@ -47,7 +47,7 @@ export default function RegisterForm({
               htmlFor="eventname"
               className="block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
-              Event You've Chosen
+              Event You &apos; ve Chosen
             </label>
             <input
               type="text"
@@ -95,7 +95,7 @@ export default function RegisterForm({
               htmlFor="collegename"
               className="block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
-              Enter the name of the institute you're studying in.
+              Enter the name of the institute you&apos;re studying in.
             </label>
             <input
               id="collegename"

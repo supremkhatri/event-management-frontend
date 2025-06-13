@@ -3,6 +3,7 @@ export default function CompletedClassCard  ({
   title,
   instructor,
 }: {
+
   id: string;
   imageUrl: string;
   title: string;

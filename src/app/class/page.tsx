@@ -16,9 +16,8 @@ export default function Classes() {
         <h2 className="my-8 text-5xl text-stone-300 "> Enrolled Classes </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {ongoing.map((classes, index) => (
-            <div className=" mb-4">
+            <div key={index} className=" mb-4">
               <OngoingClassCard
-                key={index}
                 id={index.toLocaleString()}
                 title={classes.title}
                 imageUrl={classes.imageUrl}
@@ -31,9 +30,8 @@ export default function Classes() {
         <h2 className="my-8 text-5xl text-stone-300 "> Completed Classes </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {completed.map((classes, index) => (
-            <div className=" mb-4">
+            <div key={index} className=" mb-4">
               <CompletedClassCard
-                key={index}
                 id={index.toLocaleString()}
                 title={classes.title}
                 imageUrl={classes.imageUrl}

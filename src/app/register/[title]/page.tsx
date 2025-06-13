@@ -1,25 +1,26 @@
-'use client'
-import { useParams } from "next/navigation"
-import Presenters from "@/app/events/event_detail_components/presenters"
-import { useState,useEffect } from "react"
-import {EVENTS} from '@/lib/event_data'
-import Registrationform from '@/app/register/form'
-import AboutEvent from '@/app/events/event_detail_components/about_event_container';
+"use client";
+'use client';
 
-interface Presenter{
-    title:string;
-    des: string;
-    name: string;
-    position: string;
-    panel: string;
-    img: string;
+import { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation';
+import Presenters from "@/app/events/event_detail_components/presenters";
+import { EVENTS } from "@/lib/event_data";
+import Registrationform from "@/app/register/form";
+import AboutEvent from "@/app/events/event_detail_components/about_event_container";
 
+interface Presenter {
+  title: string;
+  des: string;
+  name: string;
+  position: string;
+  panel: string;
+  img: string;
 }
 
-interface EventCard{
+interface EventCard {
   AboutCardtitle: string;
-  AboutCardsubTitle:string;
-  AboutCarddescription:string;
+  AboutCardsubTitle: string;
+  AboutCarddescription: string;
 }
 
 interface Event {
@@ -38,40 +39,45 @@ interface Event {
   description: string;
   startDate: string;
   endDate: string;
-  termsAndConditions:string[];
+  termsAndConditions: string[];
   Presenters: Presenter[];
   images: string[];
 }
 
-const registerPage = () =>{
-    const {title} = useParams()
-    const [eventData, seteventData] = useState<Event | null>(null);
-    let eventTitle;
-    
-    useEffect(() => {
-        if (title) {
-          eventTitle = Array.isArray(title) ? title[0] : title;
-          const decodedTitle = decodeURIComponent(eventTitle).replace(/-/g, ' ');
-    
-          const event = EVENTS.find((e) => e.title === decodedTitle && e.status === 'ongoing');
-    
-          if (event) {
-            seteventData(event as Event);
-          } else {
-            console.error("Ongoing event not found:", decodedTitle);
-          }
-        }
-      }, [title]);
+const RegisterPage = () => {
+  const { title } = useParams();
+  const [eventData, seteventData] = useState<Event | null>(null);
+  let eventTitle;
 
-       if (!eventData) return <div>Loading...</div>;
+  useEffect(() => {
+    if (title) {
+      eventTitle = Array.isArray(title) ? title[0] : title;
+      const decodedTitle = decodeURIComponent(eventTitle).replace(/-/g, " ");
 
-    return(
-        <>
-        <Registrationform title= {eventData.title} terms={eventData.termsAndConditions}/>
-        <AboutEvent description={eventData.description} cards={eventData.cards}/>
-        <Presenters presenters={eventData.Presenters || [] } />
-        </>
-    )
-}
+      const event = EVENTS.find(
+        (e) => e.title === decodedTitle && e.status === "ongoing"
+      );
 
-export default registerPage
+      if (event) {
+        seteventData(event as Event);
+      } else {
+        console.error("Ongoing event not found:", decodedTitle);
+      }
+    }
+  }, [title]);
+
+  if (!eventData) return <div>Loading...</div>;
+
+  return (
+    <>
+      <Registrationform
+        title={eventData.title}
+        terms={eventData.termsAndConditions}
+      />
+      <AboutEvent description={eventData.description} cards={eventData.cards} />
+      <Presenters presenters={eventData.Presenters || []} />
+    </>
+  );
+};
+
+export default RegisterPage;
