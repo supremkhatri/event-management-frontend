@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { ImagesSlider } from "./ui/images-slider";
 import { FlipWords } from "./ui/flip-words";
+import { useUserStore } from "@/store/useUserStore";
 
 export default function ImagesSliderDemo() {
   const images = [
@@ -25,6 +26,7 @@ export default function ImagesSliderDemo() {
     "Vibrant",
     "Motivating",
   ];
+  const user = useUserStore((state) => state.user);
 
   const [readmore, setReadmore] = useState(false);
   const [state, setstate] = useState("Read More");
@@ -48,8 +50,22 @@ export default function ImagesSliderDemo() {
         }}
         className="z-50 flex flex-col justify-center items-center"
       >
-        <motion.p className="font-bold text-6xl md:text-6xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-2 m-0">
-          Regsiter Now! <br /> For <FlipWords words={words} />
+        {user ? (
+          <>
+          <motion.h1 className="font-bold text-6xl md:text-6xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-2 m-0">
+          Welcome! {" "} 
+          {user.name} 
+        </motion.h1>
+        <motion.p className="text-6xl md:text-5xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-2 mt-2">
+          Let's Learn Something <br />
+          <FlipWords words={words} />
+          Today
+        </motion.p>
+          </>
+        ):(
+          <>
+          <motion.p className="font-bold text-6xl md:text-6xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-2 m-0">
+          Register Now! <br /> For <FlipWords words={words} />
           Events
         </motion.p>
         {readmore && (
@@ -68,6 +84,8 @@ export default function ImagesSliderDemo() {
           <span>Subscribe →</span>
           <span className="absolute inset-x-0  h-px -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-blue-500 to-transparent" />
         </button>
+          </>
+        )}
       </motion.div>
     </ImagesSlider>
   );

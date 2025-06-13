@@ -20,7 +20,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    useUserStore.getState().setUser("Suprem Khatri", "images/image_6.jpg");
+    useUserStore.getState().setUser("Suprem Khatri", "images/users/user_1.jpeg");
   }, []);
 
   const isLandingPage = pathname === "/";
@@ -171,7 +171,7 @@ const Navbar = () => {
                   {({ active }) => (
                     <button
                       onClick={logout}
-                      className={`block w-full bg-red-400 text-left px-4 py-2 ${
+                      className={`block w-full bg-red-800 text-left px-4 py-2 ${
                         active ? "bg-red-200" : ""
                       }`}
                     >

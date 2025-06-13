@@ -1,6 +1,10 @@
+"use client"
 import { userSubscribedClasses } from "@/lib/class_data";
 import OngoingClassCard from "@/app/class/ongoing/Cards";
 import CompletedClassCard from "./completed/Card";
+import { useUserStore } from "@/store/useUserStore";
+
+
 
 export default function Classes() {
   const ongoing = userSubscribedClasses.filter(
@@ -9,6 +13,15 @@ export default function Classes() {
   const completed = userSubscribedClasses.filter(
     (classes) => classes.isCompleted === true
   );
+  
+  const user = useUserStore((state) => state.user);
+  if (!user) {
+    return( <div className="py-24 my-8 h-96 text-center text-stone-300">
+        <h2 className="text-4xl font-semibold mb-4">You're not logged in</h2>
+        <p className="text-lg">Please LogIn/SignUp to view your subscribed classes.</p>
+      </div>
+    )
+  }
 
   return (
     <>
