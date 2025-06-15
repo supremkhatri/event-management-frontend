@@ -1,7 +1,35 @@
+"use client";
+
 import React from "react";
-export default function Contact() {
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+
+const validationSchema = Yup.object({
+  name: Yup.string()
+    .required("Name is Required")
+    .matches(/^[a-zA-Z ]+$/, "Name must be alphabet characters only"),
+  email: Yup.string()
+    .email("Invalid Email Format")
+    .required("Email field is required"),
+  message: Yup.string().max(
+    100,
+    "The message field cannot be longer than 100 characters"
+  ).required("Message is Required"),
+});
+
+interface contactus {
+  name: string;
+  email: string;
+  message: string;
+}
+
+const Contactus: React.FC = () => {
+  const handleSubmit = (values: contactus) => {
+    console.log("Form Data Submitted:", values);
+  };
+
   return (
-    <section
+    <div
       id="contact"
       className="bg-white dark:bg-black mt-10 py-12 px-6 md:px-12"
     >
@@ -13,76 +41,90 @@ export default function Contact() {
           Have questions or want to collaborate with us? Fill out the form below
           or reach out directly!
         </p>
-        <form
-          className="bg-black border border-gray-700 shadow-md rounded-lg px-8 pt-6 pb-8"
-          action="#"
-          method="POST"
+        <Formik
+          initialValues={{
+            name: "",
+            email: "",
+            message: "",
+          }}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
         >
-          <div className="mb-6">
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-            >
-              Your Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Enter your name"
-              required
-              className="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 dark:bg-gray-700 dark:text-white"
-            />
-          </div>
-          <div className="mb-6">
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-            >
-              Email Address
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Enter your email"
-              required
-              className="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 dark:bg-gray-700 dark:text-white"
-            />
-          </div>
-          <div className="mb-6">
-            <label
-              htmlFor="message"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-            >
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows={5}
-              placeholder="Write your message here"
-              required
-              className="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 dark:bg-gray-700 dark:text-white"
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-blue-950 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600 dark:hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-300"
-          >
-            Send Message
-          </button>
-        </form>
-        <p className="mt-8 text-sm text-gray-600 dark:text-gray-400">
-          Or email us directly at{" "}
-          <a
-            href="mailto:contact@eventmanagement.com"
-            className="text-blue-500 hover:underline"
-          >
-            contact@eventmanagement.com
-          </a>
-        </p>
+          {() => (
+            <Form className="space-y-5">
+              {/* Name field */}
+              <div>
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-200 mb-1"
+                >
+                  Name
+                </label>
+                <Field
+                  type="text"
+                  name="name"
+                  className="w-full px-4 py-2 border border-gray-500 rounded-md bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                />
+                <ErrorMessage
+                  name="name"
+                  component="div"
+                  className="text-red-500 text-sm"
+                />
+              </div>
+
+              {/* Email field */}
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-200 mb-1"
+                >
+                  Email
+                </label>
+                <Field
+                  type="email"
+                  name="email"
+                  className="w-full px-4 py-2 border border-gray-500 rounded-md bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                />
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className="text-red-500 text-sm"
+                />
+              </div>
+              {/* Message field */}
+              <div>
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-gray-200 mb-1"
+                >
+                  Message
+                </label>
+                <Field
+                  as="textarea"
+                  name="message"
+                  rows={4}
+                  className="w-full px-4 py-2 border border-gray-500 rounded-md bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                />
+                <ErrorMessage
+                  name="message"
+                  component="div"
+                  className="text-red-500 text-sm"
+                />
+              </div>
+
+              {/* submit button */}
+              <button
+                type="submit"
+                className="w-full py-2 mt-4 bg-white text-black font-semibold rounded-md hover:bg-transparent hover:text-white hover:border hover:border-white transition-colors border border-transparent"
+              >
+                Submit
+              </button>
+            </Form>
+          )}
+        </Formik>
       </div>
-    </section>
+    </div>
   );
-}
+};
+
+export default Contactus;
